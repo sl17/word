@@ -94,11 +94,11 @@
 </head>
 
 <body>
-  <div class="pronunciationTab">
+  <!--<div class="pronunciationTab">
     <span class="l">百度</span>
     <span class="r">有道</span>
     <p class="ring"></p>
-  </div>
+  </div> -->
   <div id="app"></div>
   <!-- 有道发音 -->
   <audio id="youdao" src="http://dict.youdao.com/speech?audio=hello"></audio>
@@ -115,20 +115,20 @@
     app.innerHTML = str;
   </script>
   <script>
-    let tab = document.querySelector('.pronunciationTab');
-    let ring = document.querySelector('.ring');
-    let txt = true;
+//     let tab = document.querySelector('.pronunciationTab');
+//     let ring = document.querySelector('.ring');
+//     let txt = true;
+//     tab.onclick = function () {
+//       txt = !txt;
+//       if (txt) {
+//         ring.style.left = "2px";
+//         audio = document.getElementById("youdao");
+//       } else {
+//         ring.style.left = "42px";
+//         audio = document.getElementById("baidu");
+//       }
+//     }
     let audio = document.getElementById("youdao")
-    tab.onclick = function () {
-      txt = !txt;
-      if (txt) {
-        ring.style.left = "2px";
-        audio = document.getElementById("youdao");
-      } else {
-        ring.style.left = "42px";
-        audio = document.getElementById("baidu");
-      }
-    }
     let word = document.getElementsByClassName('word');
     let url = audio.src;
     for (let index in word) {
