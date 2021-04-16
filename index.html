@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      padding: 10px;
+    }
+
+    #app p {
+      font-size: 16px;
+      line-height: 30px;
+      overflow: hidden;
+    }
+
+    #app p strong {
+      color: #0a8eff;
+      min-width: 120px;
+      float: left;
+      cursor: pointer;
+    }
+
+    #app p span {
+      color: #333;
+      margin-left: 120px;
+      padding-left: 10px;
+      display: block;
+      line-height: 20px;
+      padding-top: 5px;
+    }
+
+    .pronunciationTab {
+      position: fixed;
+      background: #ddd;
+      border-radius: 20px;
+      top: 10px;
+      right: 10px;
+      width: 60px;
+      height: 26px;
+      display: flex;
+      line-height: 26px;
+      font-size: 12px;
+      justify-content: space-between;
+      padding: 0 10px;
+      color: #2371ff;
+    }
+
+    .pronunciationTab span.l {
+      float: left;
+    }
+
+    .pronunciationTab span.r {
+      float: right;
+    }
+
+    .pronunciationTab p {
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 36px;
+      height: 22px;
+      background-color: #fff;
+      border-radius: 20px;
+      transition: all .33s ease;
+    }
+
+    @media (max-width: 700px) {
+      #app {
+        column-count: 1;
+      }
+    }
+    @media (min-width: 701px) and (max-width: 1300px) {
+      #app {
+        column-count: 2;
+      }
+    }
+    @media (min-width: 1301px) {
+      #app {
+        column-count: 3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pronunciationTab">
+    <span class="l">百度</span>
+    <span class="r">有道</span>
+    <p class="ring"></p>
+  </div>
+  <div id="app"></div>
+  <!-- 有道发音 -->
+  <audio id="youdao" src="http://dict.youdao.com/speech?audio=hello"></audio>
+  <!-- 百度发音 -->
+  <audio id="baidu" src="https://fanyi.baidu.com/gettts?lan=en&text=hello&spd=3&source=web"></audio>
+  <script src="./index.js"></script>
+  <script>
+    let app = document.getElementById("app");
+    let str = '';
+    for (let i = 0; i < result.length; i++) {
+      str += `<p><strong class="word">${result[i].word}</strong>
+      <span class="explain">${result[i].explain}</span></p>`
+    }
+    app.innerHTML = str;
+  </script>
+  <script>
+    let tab = document.querySelector('.pronunciationTab');
+    let ring = document.querySelector('.ring');
+    let txt = true;
+    let audio = document.getElementById("youdao")
+    tab.onclick = function () {
+      txt = !txt;
+      if (txt) {
+        ring.style.left = "3px";
+        audio = document.getElementById("youdao");
+      } else {
+        ring.style.left = "42px";
+        audio = document.getElementById("baidu");
+      }
+    }
+    let word = document.getElementsByClassName('word');
+    let url = audio.src;
+    for (let index in word) {
+      word[index].onclick = function () {
+        let textContent = this.innerText;
+        let newurl = url.replace("hello", textContent);
+        audio.src = newurl;
+        audio.play();
+      }
+    }
+  </script>
+</body>
+
+</html>
