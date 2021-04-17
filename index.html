@@ -145,6 +145,7 @@
         <span class="explain">${res[i].explain}</span></p>`
       }
       app.innerHTML = str;
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
     let audio = document.getElementById("youdao")
     let url = audio.src;
