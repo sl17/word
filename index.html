@@ -142,6 +142,17 @@
         <span class="explain">${res[i].explain}</span></p>`
       }
       app.innerHTML = str;
+      let audio = document.getElementById("youdao")
+      let word = document.getElementsByClassName('word');
+      let url = audio.src;
+      for (let index in word) {
+        word[index].onclick = function () {
+          let textContent = this.innerText;
+          let newurl = url.replace("hello", textContent);
+          audio.src = newurl;
+          audio.play();
+        }
+      }
     }
   </script>
   <script>
@@ -158,17 +169,17 @@
 //         audio = document.getElementById("baidu");
 //       }
 //     }
-    let audio = document.getElementById("youdao")
-    let word = document.getElementsByClassName('word');
-    let url = audio.src;
-    for (let index in word) {
-      word[index].onclick = function () {
-        let textContent = this.innerText;
-        let newurl = url.replace("hello", textContent);
-        audio.src = newurl;
-        audio.play();
-      }
-    }
+//     let audio = document.getElementById("youdao")
+//     let word = document.getElementsByClassName('word');
+//     let url = audio.src;
+//     for (let index in word) {
+//       word[index].onclick = function () {
+//         let textContent = this.innerText;
+//         let newurl = url.replace("hello", textContent);
+//         audio.src = newurl;
+//         audio.play();
+//       }
+//     }
   </script>
 </body>
 
