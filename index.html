@@ -92,6 +92,9 @@
       background-color: transparent;
       border: none;
       outline: none;
+      appearance:none;
+      -moz-appearance:none;
+      -webkit-appearance:none;
     }
 
     @media (max-width: 700px) {
@@ -121,12 +124,7 @@
     <p class="ring"></p>
   </div> -->
   <div class="selectTab">
-    <select onchange="page(this.value)">
-      <option value="1">DAY1</option>
-      <option value="2">DAY2</option>
-      <option value="3">DAY3</option>
-      <option value="4">DAY4</option>
-    </select>
+    <select id="selectBox" onchange="page(this.value)"></select>
   </div>
   <div id="app"></div>
   <!-- 有道发音 -->
@@ -135,6 +133,15 @@
   <audio id="baidu" src="https://fanyi.baidu.com/gettts?lan=en&text=hello&spd=3&source=web"></audio>
   <script src="./index.js"></script>
   <script>
+    getOption()
+    function getOption(){
+      let selectTab = document.querySelector("#selectBox");
+      let str = ''
+      Object.keys(result).map((v,i)=>{
+        str+=`<option value="${i+1}">${v}</option>`
+      })
+      selectTab.innerHTML = str;
+    }
     page(1)
     function page(num) {
       let app = document.getElementById("app");
