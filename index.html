@@ -74,7 +74,7 @@
       border-radius: 20px;
       transition: all .33s ease;
     }
-    
+
     .selectTab {
       position: fixed;
       background: #ddd;
@@ -89,7 +89,7 @@
     .selectTab select {
       font-size: 12px;
       background-color: transparent;
-      border: none ;
+      border: none;
       outline: none;
     }
 
@@ -98,11 +98,13 @@
         column-count: 1;
       }
     }
+
     @media (min-width: 701px) and (max-width: 1300px) {
       #app {
         column-count: 2;
       }
     }
+
     @media (min-width: 1301px) {
       #app {
         column-count: 3;
@@ -138,48 +140,19 @@
       let str = '';
       let res = result['DAY' + num]
       for (let i = 0; i < res.length; i++) {
-        str += `<p><strong class="word">${res[i].word}</strong>
+        str += `<p><strong class="word" onclick="goPlay(this)">${res[i].word}</strong>
         <span class="explain">${res[i].explain}</span></p>`
       }
       app.innerHTML = str;
-      let audio = document.getElementById("youdao")
-      let word = document.getElementsByClassName('word');
-      let url = audio.src;
-      for (let index in word) {
-        word[index].onclick = function () {
-          let textContent = this.innerText;
-          let newurl = url.replace("hello", textContent);
-          audio.src = newurl;
-          audio.play();
-        }
-      }
     }
-  </script>
-  <script>
-//     let tab = document.querySelector('.pronunciationTab');
-//     let ring = document.querySelector('.ring');
-//     let txt = true;
-//     tab.onclick = function () {
-//       txt = !txt;
-//       if (txt) {
-//         ring.style.left = "2px";
-//         audio = document.getElementById("youdao");
-//       } else {
-//         ring.style.left = "42px";
-//         audio = document.getElementById("baidu");
-//       }
-//     }
-//     let audio = document.getElementById("youdao")
-//     let word = document.getElementsByClassName('word');
-//     let url = audio.src;
-//     for (let index in word) {
-//       word[index].onclick = function () {
-//         let textContent = this.innerText;
-//         let newurl = url.replace("hello", textContent);
-//         audio.src = newurl;
-//         audio.play();
-//       }
-//     }
+    let audio = document.getElementById("youdao")
+    let url = audio.src;
+    function goPlay(that) {
+      let textContent = that.innerText;
+      let newurl = url.replace("hello", textContent);
+      audio.src = newurl;
+      audio.play();
+    }
   </script>
 </body>
 
