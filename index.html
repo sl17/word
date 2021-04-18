@@ -24,11 +24,25 @@
       border-bottom: 1px solid #eee;
     }
 
+    #app p i {
+      float: left;
+      font-style: normal;
+    }
+
     #app p strong {
       color: #0a8eff;
       min-width: 120px;
-      float: left;
       cursor: pointer;
+      display: block;
+    }
+
+    #app p em {
+      display: block;
+      font-style: normal;
+      font-size: 13px;
+      color: #666;
+      font-weight: normal;
+      line-height: 15px;
     }
 
     #app p span {
@@ -92,9 +106,9 @@
       background-color: transparent;
       border: none;
       outline: none;
-      appearance:none;
-      -moz-appearance:none;
-      -webkit-appearance:none;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
     }
 
     @media (max-width: 700px) {
@@ -134,11 +148,11 @@
   <script src="./index.js"></script>
   <script>
     getOption()
-    function getOption(){
+    function getOption() {
       let selectTab = document.querySelector("#selectBox");
       let str = ''
-      Object.keys(result).map((v,i)=>{
-        str+=`<option value="${i+1}">${v}</option>`
+      Object.keys(result).map((v, i) => {
+        str += `<option value="${i + 1}">${v}</option>`
       })
       selectTab.innerHTML = str;
     }
@@ -148,8 +162,11 @@
       let str = '';
       let res = result['DAY' + num]
       for (let i = 0; i < res.length; i++) {
-        str += `<p><strong class="word" onclick="goPlay(this)">${res[i].word}</strong>
-        <span class="explain">${res[i].explain}</span></p>`
+        str += `<p><i><strong class="word" onclick="goPlay(this)">${res[i].word}</strong>
+          <em>${res[i].phonogram}</em></i>
+          <span class="explain">${res[i].explain}</span>
+          </p>
+        `
       }
       app.innerHTML = str;
       document.body.scrollTop = document.documentElement.scrollTop = 0;
