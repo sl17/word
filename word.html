@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+    *{margin: 0;padding: 0;}
+    #app{display: flex;flex-wrap: wrap;margin: 0 auto;width: 1330px;}
+    .box{border: 1px solid #ddd;padding: 10px;width: 400px;flex: 0 0 400px;margin: 10px;}
+    .box span{margin-right: 20px;font-size: 18px;}
+    .box strong{font-weight: 400;font-size: 16px;}
+    .box p{margin: 0;}
+    .box p.top{margin-bottom: 15px;}
+    .box .desc{line-height: 22px;font-size: 14px;}
+    .box button{margin-left: 20px;cursor: pointer;border-left: none;border-top: 10px solid transparent;border-bottom: 10px solid transparent;border-right: 14px solid #ddd;background-color: transparent;border-radius: 0 9px 9px 0;vertical-align: 6px;outline: none;position: relative;}
+    .box button::after{position: absolute;content: '';border-left: 1px solid #ddd;border-top: 1px solid #ddd;width: 6px;height: 6px;top: -4px;left: 17px;transform: rotate(-45deg);}
+    .box button::before{position: absolute;content: '';border-top: 1px solid #ddd;width: 5px;height: 5px;top: -1px;left: 17px;}
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="box" v-for="(item,i) in list" :key="'l'+i">
+      <p class="top"><span>{{item.word}}</span><strong>{{item.symbol}}</strong><audio :src="'./audio/'+item.word+'.mp3'"></audio><button @click="play(item.word)"></button></p>
+      <p class="desc" v-html="item.desc"></p>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          list: [
+            { word: "gang", symbol: "/ɡæŋ/", desc: "n.一群；一帮；一伙（经常聚在一起的朋友）；一队<br/>v.〈英〉去；把…编成班组；〈口〉合伙攻击；使成套<br/>网络帮派；黑帮；团伙" },
+            { word: "attention", symbol: "/ə'tɛnʃən/", desc: "n.注意；关注；注意力；关心<br/>int.注意；立正<br/>网络引起注意；注目；注意事项" },
+            { word: "basin", symbol: "/'besn/", desc: "n.盆地；流域；海盆；（英式英语）调菜盆<br/>网络脸盆；水盆；洗脸盆" },
+            { word: "nursery", symbol: "/'nɝsəri/", desc: "n.苗圃；婴儿室；（供游戏的）儿童室<br/>adj.幼儿教育的<br/>网络托儿所；幼儿园；育婴室" },
+            { word: "retire", symbol: "/rɪ'taɪɚ/", desc: "n.退隐；【军】退兵信号；〈罕〉退隐所<br/>v.（令）退职；（使）退休；（因伤）退出（比赛等）<br/>网络退役；就寝；撤退" },
+            { word: "entertain", symbol: "/,ɛntɚ'ten/", desc: "v.娱乐；款待；使有兴趣；使快乐<br/>网络招待；使娱乐；怀抱" },
+            { word: "memorize", symbol: "/'mɛmə'raɪz/", desc: "v.记住；记忆<br/>网络熟记；背诵；记录" },
+            { word: "probability", symbol: "/'prɑbə'bɪləti/", desc: "n.概率；可能性；几率；或然率<br/>网络机率；概率论；或然性" },
+            { word: "straw", symbol: "/strɔ/", desc: "n.稻草；一根禾秆（或麦秆、稻草）；（喝饮料用的）吸管<br/>adj.稻草的；稻草[麦秆]做的；(作为替身的)稻草人般的；假的<br/>网络麦杆；麦杆吸管；稻秆" },
+            { word: "yacht", symbol: "/jɑt/", desc: "n.游艇；帆船；快艇<br/>v.乘快艇<br/>网络游船；快艇游艇；私人游艇" },
+            // { word: "", symbol: "", desc: "" },
+          ]
+        }
+      },
+      methods:{
+        play(url){
+          let audio = new Audio()
+          audio.src='./audio/'+url+'.mp3';
+          audio.play()
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
